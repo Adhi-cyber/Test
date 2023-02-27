@@ -8,13 +8,13 @@ module sync_fifo(
 	output reg[1024:0] fifo_cnt = 0,
 	output reg [31:0] data_out);
 
-reg [1024:0] fifo_ram [0:7];
+reg [1023:0] fifo_ram [0:7];
 
-reg [1024:0] wr_ptr;
-reg[1024:0] rd_ptr;
+reg [1023:0] wr_ptr;
+reg[1023:0] rd_ptr;
 
 assign empty = (fifo_cnt == 0);
-assign full = (fifo_cnt == 1024);
+assign full = (fifo_cnt == 1023);
 
 always @(posedge clk)
 begin
