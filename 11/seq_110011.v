@@ -56,7 +56,7 @@ reg [2:0] state;
           if(din)
             state <= S6;
           else
-            state <= S2;
+            state <= S0;
         end
 
 	 S6: begin
