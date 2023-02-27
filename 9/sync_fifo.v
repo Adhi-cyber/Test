@@ -8,7 +8,7 @@ module sync_fifo(
 	output reg[1024:0] fifo_cnt = 0,
 	output reg [31:0] data_out);
 
-reg [1023:0] fifo_ram [0:7];
+	reg [9:0] fifo_ram [0:1023];
 
 reg [1023:0] wr_ptr;
 reg[1023:0] rd_ptr;
@@ -20,7 +20,7 @@ always @(posedge clk)
 begin
 	if((wr && !full) || (wr && empty))
 	begin
-		fifo[wr_ptr] <= data_in;
+		fifo_cnt[wr_ptr] <= data_in;
 		wr_ptr <= wr_ptr +1;
 	end
 end
@@ -29,7 +29,7 @@ always @(posedge clk)
 begin
 	if((rd &&full) || (rd && !empty))
 	begin
-		data_out <= fifo[rd_ptr];
+		data_out <= fifo_cnt[rd_ptr];
 		rd_ptr <= rd +1;
 	end
 end
